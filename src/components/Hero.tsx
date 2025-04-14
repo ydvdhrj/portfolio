@@ -203,7 +203,7 @@ export default function Hero() {
                 <Stack direction="row" spacing={3}>
                   <Button
                     as="a"
-                    href="https://github.com/yourusername"
+                    href="https://github.com/ydvdhrj"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub"
@@ -211,6 +211,7 @@ export default function Hero() {
                     size="md"
                     p={3}
                     bg={iconButtonBg}
+                    color={secondaryButtonColor}
                     _hover={{ bg: iconButtonHoverBg }}
                     leftIcon={<FaGithub size={20} />}
                     iconSpacing={0}
@@ -222,7 +223,7 @@ export default function Hero() {
 
                   <Button
                     as="a"
-                    href="https://linkedin.com/in/yourusername"
+                    href="https://linkedin.com/in/"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn"
@@ -230,6 +231,7 @@ export default function Hero() {
                     size="md"
                     p={3}
                     bg={iconButtonBg}
+                    color={secondaryButtonColor}
                     _hover={{ bg: iconButtonHoverBg }}
                     leftIcon={<FaLinkedin size={20} />}
                     iconSpacing={0}

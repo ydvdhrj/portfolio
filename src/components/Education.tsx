@@ -1,6 +1,63 @@
 "use client";
 
+import {
+  Box,
+  Container,
+  Heading,
+  Text,
+  Grid,
+  GridItem,
+  Flex,
+  VStack,
+  HStack,
+  List,
+  ListItem,
+  ListIcon,
+  Icon,
+  useColorModeValue,
+  chakra,
+  Divider,
+  SimpleGrid,
+} from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import { FaGraduationCap, FaTrophy, FaHeart, FaCheck } from "react-icons/fa";
+
+// Motion components
+const MotionBox = chakra(motion.div);
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
 export default function Education() {
+  // Theme colors based on color mode
+  const sectionBg = useColorModeValue("white", "gray.800");
+  const headingColor = useColorModeValue("blue.600", "blue.300");
+  const cardBg = useColorModeValue("white", "gray.800");
+  const cardBorderColor = useColorModeValue("gray.200", "gray.700");
+  const textColor = useColorModeValue("gray.700", "gray.300");
+  const primaryColor = useColorModeValue("blue.500", "blue.300");
+  const timelineBg = useColorModeValue("gray.200", "gray.700");
+  const timelineItemBg = useColorModeValue("blue.50", "blue.900");
+  const timelineItemBorder = useColorModeValue("blue.200", "blue.700");
+
   const education = [
     {
       institution: "Lovely Professional University",
@@ -9,13 +66,13 @@ export default function Education() {
       description:
         "Pursuing a bachelor's degree in Computer Science Engineering with a focus on software development, data structures and algorithms, and machine learning.",
     },
-    {
-      institution: "Jawahar Navodaya Vidyalaya, Ujjain",
-      degree: "Higher Secondary Education",
-      duration: "Completed",
-      description:
-        "Completed higher secondary education with focus on science and mathematics.",
-    },
+    // {
+    //   institution: "Jawahar Navodaya Vidyalaya, Ujjain",
+    //   degree: "Higher Secondary Education",
+    //   duration: "Completed",
+    //   description:
+    //     "Completed higher secondary education with focus on science and mathematics.",
+    // },
   ];
 
   const achievements = [
@@ -25,164 +82,270 @@ export default function Education() {
     "Selected for internships (e.g., JIO, Salesforce - Applied)",
   ];
 
+  const hobbies = [
+    "Playing Badminton",
+    "Solving Puzzles",
+    "Competitive Programming",
+    "Exploring AI/ML",
+    "Working on Side Projects",
+  ];
+
   return (
-    <section id="education" className="py-16">
-      <div className="container mx-auto px-4 sm:px-6">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          Education & <span className="text-primary">Achievements</span>
-        </h2>
+    <Box
+      as="section"
+      id="education"
+      py={20}
+      bg={sectionBg}
+      position="relative"
+      overflow="hidden"
+    >
+      {/* Background decorative elements */}
+      <Box
+        position="absolute"
+        top="15%"
+        left="10%"
+        w="300px"
+        h="300px"
+        borderRadius="full"
+        bg="purple.500"
+        filter="blur(150px)"
+        opacity="0.05"
+        zIndex="0"
+      />
+      <Box
+        position="absolute"
+        bottom="15%"
+        right="10%"
+        w="300px"
+        h="300px"
+        borderRadius="full"
+        bg="blue.500"
+        filter="blur(150px)"
+        opacity="0.05"
+        zIndex="0"
+      />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-2xl font-semibold mb-6 flex items-center">
-              <span className="inline-block mr-2 text-primary">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-graduation-cap"
+      <Container maxW="container.xl" position="relative" zIndex="1">
+        <MotionBox
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
+          <MotionBox variants={itemVariants} mb={16} textAlign="center">
+            <Heading
+              as="h2"
+              size="2xl"
+              mb={6}
+              bgGradient="linear(to-r, blue.400, purple.500)"
+              bgClip="text"
+              fontWeight="extrabold"
+            >
+              Education & Achievements
+            </Heading>
+            <Text
+              fontSize="xl"
+              maxW="3xl"
+              mx="auto"
+              color={textColor}
+              lineHeight="tall"
+            >
+              My academic journey and notable achievements that shaped my skills
+              and knowledge.
+            </Text>
+          </MotionBox>
+
+          <Grid templateColumns={{ base: "1fr", lg: "1fr 1fr" }} gap={10}>
+            {/* Education Section */}
+            <GridItem>
+              <MotionBox variants={itemVariants}>
+                <HStack mb={6} spacing={3} align="center">
+                  <Icon as={FaGraduationCap} color={primaryColor} boxSize={6} />
+                  <Heading as="h3" size="lg" color={headingColor}>
+                    Education
+                  </Heading>
+                </HStack>
+
+                <Box
+                  position="relative"
+                  pl={{ base: 10, md: 0 }}
+                  _before={{
+                    content: '""',
+                    position: "absolute",
+                    left: { base: "16px", md: "50%" },
+                    top: 0,
+                    bottom: 0,
+                    width: "2px",
+                    bg: timelineBg,
+                    zIndex: 0,
+                  }}
                 >
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                  <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
-                </svg>
-              </span>
-              Education
-            </h3>
-
-            <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-border">
-              {education.map((item, index) => (
-                <div
-                  key={index}
-                  className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
-                >
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-primary bg-card z-10 shadow-md md:group-odd:ml-8 md:group-even:mr-8">
-                    <span className="text-primary">{index + 1}</span>
-                  </div>
-
-                  <div className="w-full md:w-[calc(50%-4rem)] p-4 rounded-lg bg-card border border-border shadow-sm">
-                    <h4 className="text-lg font-semibold text-primary">
-                      {item.institution}
-                    </h4>
-                    <p className="text-md font-medium">{item.degree}</p>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      {item.duration}
-                    </p>
-                    <p className="mt-2 text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-semibold mb-6 flex items-center">
-              <span className="inline-block mr-2 text-primary">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-trophy"
-                >
-                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
-                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
-                  <path d="M4 22h16"></path>
-                  <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
-                  <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
-                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
-                </svg>
-              </span>
-              Achievements
-            </h3>
-
-            <div className="bg-card p-6 rounded-lg border border-border shadow-sm">
-              <ul className="space-y-4">
-                {achievements.map((achievement, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary/20 text-primary mr-3 mt-0.5">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="lucide lucide-check"
-                      >
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                    </span>
-                    <span>{achievement}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-8 pt-6 border-t border-border">
-                <h4 className="text-lg font-semibold mb-4 flex items-center">
-                  <span className="inline-block mr-2 text-primary">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-heart-handshake"
+                  {education.map((item, index) => (
+                    <MotionBox
+                      key={index}
+                      variants={itemVariants}
+                      custom={index}
+                      mb={index === education.length - 1 ? 0 : 10}
+                      position="relative"
                     >
-                      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                      <path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.82 2.95 0l2.9-2.9"></path>
-                      <path d="m18 15-2-2"></path>
-                      <path d="m15 18-2-2"></path>
-                    </svg>
-                  </span>
-                  Hobbies & Interests
-                </h4>
-                <ul className="grid grid-cols-2 gap-3">
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                    Playing Badminton
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                    Solving Puzzles
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                    Competitive Programming
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                    Exploring AI/ML
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                    Working on Side Projects
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+                      <Flex
+                        direction={{
+                          base: "row",
+                          md: index % 2 === 0 ? "row" : "row-reverse",
+                        }}
+                        align="flex-start"
+                      >
+                        <Box
+                          position="absolute"
+                          left={{ base: "-30px", md: "50%" }}
+                          transform={{ md: "translateX(-50%)" }}
+                          width="40px"
+                          height="40px"
+                          borderRadius="full"
+                          bg={cardBg}
+                          borderWidth="2px"
+                          borderColor={primaryColor}
+                          zIndex={1}
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="center"
+                          fontWeight="bold"
+                          color={primaryColor}
+                          boxShadow="md"
+                        >
+                          {index + 1}
+                        </Box>
+
+                        <Box
+                          ml={{ base: 0, md: index % 2 === 0 ? 6 : 0 }}
+                          mr={{ base: 0, md: index % 2 === 0 ? 0 : 6 }}
+                          w={{ base: "100%", md: "calc(50% - 3rem)" }}
+                          p={6}
+                          bg={cardBg}
+                          borderRadius="lg"
+                          borderWidth="1px"
+                          borderColor={cardBorderColor}
+                          boxShadow="md"
+                          position={{
+                            md: index % 2 === 0 ? "relative" : "relative",
+                          }}
+                          left={{ md: index % 2 === 0 ? 0 : "50%" }}
+                          _hover={{
+                            boxShadow: "lg",
+                            transform: "translateY(-3px)",
+                            transition: "all 0.3s ease",
+                          }}
+                          transition="all 0.3s ease"
+                        >
+                          <Heading
+                            as="h4"
+                            size="md"
+                            color={primaryColor}
+                            mb={1}
+                          >
+                            {item.institution}
+                          </Heading>
+                          <Text fontWeight="medium" mb={1}>
+                            {item.degree}
+                          </Text>
+                          <Text
+                            fontSize="sm"
+                            color={textColor}
+                            opacity={0.8}
+                            mb={3}
+                          >
+                            {item.duration}
+                          </Text>
+                          <Text color={textColor}>{item.description}</Text>
+                        </Box>
+                      </Flex>
+                    </MotionBox>
+                  ))}
+                </Box>
+              </MotionBox>
+            </GridItem>
+
+            {/* Achievements Section */}
+            <GridItem>
+              <MotionBox variants={itemVariants}>
+                <HStack mb={6} spacing={3} align="center">
+                  <Icon as={FaTrophy} color={primaryColor} boxSize={6} />
+                  <Heading as="h3" size="lg" color={headingColor}>
+                    Achievements
+                  </Heading>
+                </HStack>
+
+                <Box
+                  p={6}
+                  bg={cardBg}
+                  borderRadius="lg"
+                  borderWidth="1px"
+                  borderColor={cardBorderColor}
+                  boxShadow="md"
+                  transition="all 0.3s ease"
+                  _hover={{
+                    boxShadow: "lg",
+                    borderColor: "blue.300",
+                  }}
+                >
+                  <List spacing={4}>
+                    {achievements.map((achievement, index) => (
+                      <MotionBox
+                        key={index}
+                        variants={itemVariants}
+                        custom={index}
+                        as={ListItem}
+                        display="flex"
+                        alignItems="flex-start"
+                      >
+                        <ListIcon
+                          as={FaCheck}
+                          color={primaryColor}
+                          mt={1}
+                          bg={timelineItemBg}
+                          p={1}
+                          boxSize={5}
+                          borderRadius="full"
+                        />
+                        <Text ml={2}>{achievement}</Text>
+                      </MotionBox>
+                    ))}
+                  </List>
+
+                  <Divider my={6} borderColor={cardBorderColor} />
+
+                  <HStack mb={4} spacing={3} align="center">
+                    <Icon as={FaHeart} color={primaryColor} boxSize={5} />
+                    <Heading as="h4" size="md" color={headingColor}>
+                      Hobbies & Interests
+                    </Heading>
+                  </HStack>
+
+                  <SimpleGrid columns={{ base: 1, md: 2 }} spacing={3}>
+                    {hobbies.map((hobby, index) => (
+                      <MotionBox
+                        key={index}
+                        variants={itemVariants}
+                        custom={index}
+                        as={HStack}
+                        spacing={2}
+                      >
+                        <Box
+                          width="8px"
+                          height="8px"
+                          borderRadius="full"
+                          bg={primaryColor}
+                        />
+                        <Text>{hobby}</Text>
+                      </MotionBox>
+                    ))}
+                  </SimpleGrid>
+                </Box>
+              </MotionBox>
+            </GridItem>
+          </Grid>
+        </MotionBox>
+      </Container>
+    </Box>
   );
 }

@@ -202,7 +202,7 @@ export default function About() {
             </Box>
           </MotionBox>
 
-          <Grid templateColumns={{ base: "1fr", lg: "1fr 1fr" }} gap={12}>
+          <Grid templateColumns={{ base: "1fr", lg: "1fr" }} gap={12}>
             {/* Bio Section */}
             <GridItem>
               <MotionBox
@@ -267,13 +267,23 @@ export default function About() {
                     designing robust backend systems.
                   </Text>
 
+                  <Text color={textColor} fontSize="md" lineHeight="tall">
+                    I'm particularly interested in building scalable web
+                    applications and exploring emerging technologies like AI and
+                    machine learning. I enjoy solving complex problems and
+                    continuously learning new skills to improve my development
+                    capabilities.
+                  </Text>
+
                   <Box as="ul" width="100%">
                     {[
                       "B.Tech in Computer Science at LPU University (Expected 2026)",
                       "Full-Stack Developer with 2+ years of project experience",
                       "Open-source contributor and tech community member",
+                      "Passionate about building user-centered digital experiences",
+                      "Strong focus on clean, maintainable, and scalable code",
                     ].map((item, index) => (
-                      <Box as="li" mb={index === 2 ? 0 : 3} key={index}>
+                      <Box as="li" mb={index === 4 ? 0 : 3} key={index}>
                         <HStack gap={2}>
                           <Box>
                             <Icon as={FaCheck} color="green.500" boxSize={5} />
@@ -283,106 +293,6 @@ export default function About() {
                       </Box>
                     ))}
                   </Box>
-                </VStack>
-              </MotionBox>
-            </GridItem>
-
-            {/* Skills Section */}
-            <GridItem>
-              <MotionBox
-                as={motion.div}
-                initial="initial"
-                whileInView="animate"
-                whileHover="hover"
-                viewport={{ once: true }}
-                variants={cardVariants}
-                p={8}
-                bg={cardBg}
-                borderRadius="xl"
-                boxShadow="xl"
-                border="1px"
-                borderColor={cardBorderColor}
-                height="100%"
-                position="relative"
-                _before={{
-                  content: '""',
-                  position: "absolute",
-                  inset: "-1px",
-                  zIndex: -1,
-                  borderRadius: "xl",
-                  background: "linear-gradient(135deg, blue.300, purple.500)",
-                  opacity: 0.5,
-                  filter: "blur(8px)",
-                  transition: "all 0.3s ease",
-                }}
-              >
-                <VStack alignItems="start" gap={6}>
-                  <Heading
-                    as="h3"
-                    size="lg"
-                    color={headingColor}
-                    position="relative"
-                    display="inline-block"
-                    _after={{
-                      content: '""',
-                      position: "absolute",
-                      bottom: "-8px",
-                      left: "0",
-                      width: "40px",
-                      height: "3px",
-                      background: "blue.400",
-                      borderRadius: "full",
-                    }}
-                  >
-                    My Skills
-                  </Heading>
-
-                  <Text color={textColor} fontSize="md" lineHeight="tall">
-                    I specialize in full-stack development with a focus on
-                    creating responsive, performant web applications. My
-                    technical toolkit includes:
-                  </Text>
-
-                  <VStack alignItems="stretch" w="full" gap={6}>
-                    {skillCategories.map((category, index) => (
-                      <Box key={index}>
-                        <HStack mb={3} gap={2}>
-                          <Box bg={tagBg} p={2} borderRadius="md">
-                            <Icon
-                              as={category.icon}
-                              color={headingColor}
-                              boxSize={5}
-                            />
-                          </Box>
-                          <Heading
-                            as="h4"
-                            size="sm"
-                            fontWeight="bold"
-                            color={headingColor}
-                          >
-                            {category.name}
-                          </Heading>
-                        </HStack>
-                        <Box display="flex" flexWrap="wrap" gap={2}>
-                          {category.skills.map((skill, i) => (
-                            <Box
-                              key={i}
-                              bg={tagBg}
-                              color={tagColor}
-                              px={3}
-                              py={1}
-                              borderRadius="full"
-                              my={1}
-                              fontWeight="medium"
-                              fontSize="sm"
-                            >
-                              {skill}
-                            </Box>
-                          ))}
-                        </Box>
-                      </Box>
-                    ))}
-                  </VStack>
                 </VStack>
               </MotionBox>
             </GridItem>

@@ -1,28 +1,81 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {
+  Box,
+  Container,
+  Heading,
+  Text,
+  SimpleGrid,
+  Flex,
+  Tag,
+  VStack,
+  HStack,
+  Icon,
+  Button,
+  useColorModeValue,
+  chakra,
+} from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { HiOutlineArrowRight } from "react-icons/hi";
+import Image from "next/image";
+
+// Motion components
+const MotionBox = chakra(motion.div);
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const cardVariants = {
+  initial: {
+    y: 50,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+  hover: {
+    y: -5,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
+    },
+  },
+};
 
 export default function Projects() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const element = document.getElementById("projects-section");
-    if (element) observer.observe(element);
-
-    return () => {
-      if (element) observer.unobserve(element);
-    };
-  }, []);
+  // Theme colors based on color mode
+  const sectionBg = useColorModeValue("gray.50", "gray.900");
+  const headingColor = useColorModeValue("blue.600", "blue.300");
+  const cardBg = useColorModeValue("white", "gray.800");
+  const cardBorderColor = useColorModeValue("gray.200", "gray.700");
+  const textColor = useColorModeValue("gray.700", "gray.300");
+  const tagBg = useColorModeValue("blue.50", "blue.900");
+  const tagColor = useColorModeValue("blue.600", "blue.200");
+  const iconBg = useColorModeValue("blue.50", "blue.900");
 
   const projects = [
     {
@@ -30,8 +83,10 @@ export default function Projects() {
       description:
         "Built a machine learning model to predict median house prices in California using a dataset of over 20,000 districts. Implemented and compared Linear Regression, Random Forest, and XGBoost to identify the best-performing algorithm.",
       tags: ["Python", "Scikit-learn", "Machine Learning", "Data Analysis"],
-      image: "/images/project-house.jpg",
-      icon: (
+      image: "/project-house.jpg",
+      github: "https://github.com/ydvdhrj/house-price-prediction",
+      live: "",
+      icon: (props) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -42,7 +97,7 @@ export default function Projects() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-primary"
+          {...props}
         >
           <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
           <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -54,8 +109,10 @@ export default function Projects() {
       description:
         "A full-stack web app for splitting and managing expenses among friends or groups. Features include group creation and management, real-time expense tracking, and authentication with Flask-Login.",
       tags: ["Flask", "PostgreSQL", "Neon", "Bootstrap", "SQLAlchemy"],
-      image: "/images/project-splitwise.jpg",
-      icon: (
+      image: "/project-splitwise.jpg",
+      github: "https://github.com/ydvdhrj/splitwise-clone",
+      live: "https://splitwise-clone.vercel.app",
+      icon: (props) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -66,7 +123,7 @@ export default function Projects() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-primary"
+          {...props}
         >
           <path d="M12 2v20"></path>
           <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
@@ -78,8 +135,10 @@ export default function Projects() {
       description:
         "A SaaS project that helps influencers auto-respond to Instagram DMs using custom keywords. It includes an AI bot to handle conversations based on chat history.",
       tags: ["TypeScript", "Prisma", "Neon", "SaaS"],
-      image: "/images/project-slide.jpg",
-      icon: (
+      image: "/project-slide.jpg",
+      github: "https://github.com/ydvdhrj/slide-dm-automation",
+      live: "https://slide-dm.vercel.app",
+      icon: (props) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -90,7 +149,7 @@ export default function Projects() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-primary"
+          {...props}
         >
           <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
           <polyline points="14 2 14 8 20 8"></polyline>
@@ -105,8 +164,10 @@ export default function Projects() {
       description:
         "A Kotlin-based mobile app for setting reminders with customizable alarms and notifications. Built for quick daily task reminders and improved time management.",
       tags: ["Kotlin", "Android", "Mobile Development"],
-      image: "/images/project-remindme.jpg",
-      icon: (
+      image: "/project-remindme.jpg",
+      github: "https://github.com/ydvdhrj/remind-me-app",
+      live: "",
+      icon: (props) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -117,7 +178,7 @@ export default function Projects() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-primary"
+          {...props}
         >
           <circle cx="12" cy="12" r="10"></circle>
           <polyline points="12 6 12 12 16 14"></polyline>
@@ -127,88 +188,225 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-16 bg-muted/30 smooth-scroll">
-      <div className="container mx-auto px-4 sm:px-6" id="projects-section">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-          My <span className="text-primary">Projects</span>
-        </h2>
+    <Box
+      as="section"
+      id="projects"
+      py={20}
+      bg={sectionBg}
+      position="relative"
+      overflow="hidden"
+    >
+      {/* Background decorative elements */}
+      <Box
+        position="absolute"
+        top="10%"
+        right="5%"
+        w="300px"
+        h="300px"
+        borderRadius="full"
+        bg="blue.500"
+        filter="blur(150px)"
+        opacity="0.07"
+        zIndex="0"
+      />
+      <Box
+        position="absolute"
+        bottom="10%"
+        left="5%"
+        w="300px"
+        h="300px"
+        borderRadius="full"
+        bg="purple.500"
+        filter="blur(150px)"
+        opacity="0.07"
+        zIndex="0"
+      />
 
-        <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-          Here are some of the projects I've worked on. Each one represents a
-          different challenge and learning experience.
-        </p>
+      <Container maxW="container.xl" position="relative" zIndex="1">
+        <MotionBox
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
+          <MotionBox variants={itemVariants} mb={16} textAlign="center">
+            <Box>
+              <Heading
+                as="h2"
+                size="2xl"
+                mb={6}
+                bgGradient="linear(to-r, blue.400, purple.500)"
+                bgClip="text"
+                fontWeight="extrabold"
+              >
+                My Projects
+              </Heading>
+              <Text
+                fontSize="xl"
+                maxW="3xl"
+                mx="auto"
+                color={textColor}
+                lineHeight="tall"
+              >
+                Here are some of the projects I've worked on. Each one
+                represents a different challenge and learning experience.
+              </Text>
+            </Box>
+          </MotionBox>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className={`bg-card rounded-lg overflow-hidden border border-border hover:border-primary/50 hover:shadow-xl transition-all group ${
-                isVisible ? "animate-fade-in opacity-100" : "opacity-0"
-              }`}
-              style={{ animationDelay: `${index * 150}ms` }}
-            >
-              <div className="h-48 bg-muted relative overflow-hidden">
-                {/* Replace with actual project images */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-muted-foreground text-sm">
-                    Project Image Placeholder
-                  </span>
-                </div>
-                {/* Uncomment when you have actual images */}
-                {/* <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                /> */}
-              </div>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+            {projects.map((project, index) => (
+              <MotionBox
+                key={index}
+                as={motion.div}
+                initial="initial"
+                whileInView="animate"
+                whileHover="hover"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={cardVariants}
+                custom={index}
+              >
+                <Box
+                  borderRadius="xl"
+                  overflow="hidden"
+                  bg={cardBg}
+                  borderWidth="1px"
+                  borderColor={cardBorderColor}
+                  boxShadow="lg"
+                  height="100%"
+                  position="relative"
+                  transition="all 0.3s"
+                  _hover={{
+                    boxShadow: "xl",
+                    borderColor: "blue.300",
+                  }}
+                >
+                  <Box
+                    h="200px"
+                    position="relative"
+                    overflow="hidden"
+                    bgGradient="linear(to-r, blue.50, purple.50)"
+                  >
+                    {project.image && (
+                      <Box
+                        as={motion.div}
+                        position="absolute"
+                        inset="0"
+                        whileHover={{
+                          scale: 1.05,
+                          transition: { duration: 0.3 },
+                        }}
+                      >
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          style={{ objectFit: "cover" }}
+                        />
+                      </Box>
+                    )}
+                  </Box>
 
-              <div className="p-6">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    {project.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold group-hover:text-primary transition-colors flex-1">
-                    {project.title}
-                  </h3>
-                </div>
-                <p className="mb-4 text-muted-foreground">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="px-2 py-1 bg-primary/10 text-primary text-sm rounded"
+                  <Box p={6}>
+                    <HStack mb={4} spacing={3}>
+                      <Box
+                        p={2}
+                        bg={iconBg}
+                        color={headingColor}
+                        borderRadius="md"
+                      >
+                        <Icon as={project.icon} boxSize={5} />
+                      </Box>
+                      <Heading
+                        as="h3"
+                        size="md"
+                        color={headingColor}
+                        fontWeight="bold"
+                      >
+                        {project.title}
+                      </Heading>
+                    </HStack>
+
+                    <Text color={textColor} mb={4} fontSize="md">
+                      {project.description}
+                    </Text>
+
+                    <Box mb={6}>
+                      <Flex flexWrap="wrap" gap={2}>
+                        {project.tags.map((tag, i) => (
+                          <Tag
+                            key={i}
+                            size="md"
+                            borderRadius="full"
+                            bg={tagBg}
+                            color={tagColor}
+                            fontWeight="medium"
+                            px={3}
+                            py={1}
+                          >
+                            {tag}
+                          </Tag>
+                        ))}
+                      </Flex>
+                    </Box>
+
+                    <Flex
+                      pt={4}
+                      borderTop="1px"
+                      borderColor={cardBorderColor}
+                      justifyContent="space-between"
+                      alignItems="center"
                     >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-border flex justify-end">
-                  <button className="text-primary hover:text-primary-hover flex items-center gap-1 font-medium transform transition-transform hover:-translate-y-1">
-                    View Details
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M5 12h14"></path>
-                      <path d="m12 5 7 7-7 7"></path>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+                      <HStack spacing={3}>
+                        {project.github && (
+                          <Button
+                            as="a"
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            variant="ghost"
+                            size="sm"
+                            leftIcon={<FaGithub />}
+                            color={headingColor}
+                          >
+                            GitHub
+                          </Button>
+                        )}
+                        {project.live && (
+                          <Button
+                            as="a"
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            variant="ghost"
+                            size="sm"
+                            leftIcon={<FaExternalLinkAlt />}
+                            color={headingColor}
+                          >
+                            Live Demo
+                          </Button>
+                        )}
+                      </HStack>
+                      <Button
+                        as="a"
+                        href={project.github || project.live || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        variant="ghost"
+                        size="sm"
+                        rightIcon={<HiOutlineArrowRight />}
+                        color={headingColor}
+                      >
+                        View Details
+                      </Button>
+                    </Flex>
+                  </Box>
+                </Box>
+              </MotionBox>
+            ))}
+          </SimpleGrid>
+        </MotionBox>
+      </Container>
+    </Box>
   );
 }
