@@ -74,8 +74,7 @@ const cardVariants = {
   initial: {
     y: 20,
     opacity: 0,
-  },
-  animate: (i) => ({
+  },  animate: (i: number) => ({
     y: 0,
     opacity: 1,
     transition: {
