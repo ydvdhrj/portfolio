@@ -20,6 +20,10 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import Image from "next/image";
 
+type IconProps = {
+  [key: string]: any;
+};
+
 // Motion components
 const MotionBox = chakra(motion.div);
 
@@ -81,12 +85,11 @@ export default function Projects() {
     {
       title: "House Price Prediction (California)",
       description:
-        "Built a machine learning model to predict median house prices in California using a dataset of over 20,000 districts. Implemented and compared Linear Regression, Random Forest, and XGBoost to identify the best-performing algorithm.",
-      tags: ["Python", "Scikit-learn", "Machine Learning", "Data Analysis"],
+        "Built a machine learning model to predict median house prices in California using a dataset of over 20,000 districts. Implemented and compared Linear Regression, Random Forest, and XGBoost to identify the best-performing algorithm.",      tags: ["Python", "Scikit-learn", "Machine Learning", "Data Analysis"],
       image: "/houseprice.png",
       github: "https://github.com/ydvdhrj/",
       // live: "",
-      icon: (props) => (
+      icon: (props: IconProps) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -107,12 +110,11 @@ export default function Projects() {
     {
       title: "Splitwise Expense Tracking App",
       description:
-        "A full-stack web app for splitting and managing expenses among friends or groups. Features include group creation and management, real-time expense tracking, and authentication with Flask-Login.",
-      tags: ["Flask", "PostgreSQL", "Neon", "Bootstrap", "SQLAlchemy"],
+        "A full-stack web app for splitting and managing expenses among friends or groups. Features include group creation and management, real-time expense tracking, and authentication with Flask-Login.",      tags: ["Flask", "PostgreSQL", "Neon", "Bootstrap", "SQLAlchemy"],
       image: "/splitwise.png",
       github: "https://github.com/ydvdhrj/splitwise",
       live: "https://splitwise-iota.vercel.app/",
-      icon: (props) => (
+      icon: (props: IconProps) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -133,12 +135,11 @@ export default function Projects() {
     {
       title: "Slide - Instagram DM Automation SaaS",
       description:
-        "A SaaS project that helps influencers auto-respond to Instagram DMs using custom keywords. It includes an AI bot to handle conversations based on chat history.",
-      tags: ["TypeScript", "Prisma", "Neon", "SaaS"],
+        "A SaaS project that helps influencers auto-respond to Instagram DMs using custom keywords. It includes an AI bot to handle conversations based on chat history.",      tags: ["TypeScript", "Prisma", "Neon", "SaaS"],
       image: "/slide.jpeg",
       github: "https://github.com/ydvdhrj/Slide",
       // live: "https://slide-dm.vercel.app",
-      icon: (props) => (
+      icon: (props: IconProps) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -162,12 +163,11 @@ export default function Projects() {
     {
       title: "EduFocus (Android)",
       description:
-        "A Kotlin-based mobile app for setting reminders with customizable alarms and notifications. Built for quick daily task reminders and improved time management.",
-      tags: ["Kotlin", "Android", "Mobile Development"],
+        "A Kotlin-based mobile app for setting reminders with customizable alarms and notifications. Built for quick daily task reminders and improved time management.",      tags: ["Kotlin", "Android", "Mobile Development"],
       image: "/EduFocus.png",
       github: "https://github.com/ydvdhrj/EduFocus",
       live: "",
-      icon: (props) => (
+      icon: (props: IconProps) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
