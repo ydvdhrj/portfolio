@@ -70,11 +70,33 @@ const itemVariants = {
   },
 };
 
-const cardVariants = {
+type CardVariants = {
+  initial: { y: number; opacity: number };
+  animate: (i: number) => {
+    y: number;
+    opacity: number;
+    transition: {
+      delay: number;
+      duration: number;
+      ease: number[];
+    };
+  };
+  hover: {
+    y: number;
+    boxShadow: string;
+    transition: {
+      duration: number;
+      ease: string;
+    };
+  };
+};
+
+const cardVariants: CardVariants = {
   initial: {
     y: 20,
     opacity: 0,
-  },  animate: (i: number) => ({
+  },
+  animate: (i: number) => ({
     y: 0,
     opacity: 1,
     transition: {
