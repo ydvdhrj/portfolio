@@ -83,9 +83,9 @@ export default function Projects() {
       description:
         "Built a machine learning model to predict median house prices in California using a dataset of over 20,000 districts. Implemented and compared Linear Regression, Random Forest, and XGBoost to identify the best-performing algorithm.",
       tags: ["Python", "Scikit-learn", "Machine Learning", "Data Analysis"],
-      image: "/project-house.jpg",
-      github: "https://github.com/ydvdhrj/house-price-prediction",
-      live: "",
+      image: "/houseprice.png",
+      github: "https://github.com/ydvdhrj/",
+      // live: "",
       icon: (props) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -109,9 +109,9 @@ export default function Projects() {
       description:
         "A full-stack web app for splitting and managing expenses among friends or groups. Features include group creation and management, real-time expense tracking, and authentication with Flask-Login.",
       tags: ["Flask", "PostgreSQL", "Neon", "Bootstrap", "SQLAlchemy"],
-      image: "/project-splitwise.jpg",
-      github: "https://github.com/ydvdhrj/splitwise-clone",
-      live: "https://splitwise-clone.vercel.app",
+      image: "/splitwise.png",
+      github: "https://github.com/ydvdhrj/splitwise",
+      live: "https://splitwise-iota.vercel.app/",
       icon: (props) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -135,9 +135,9 @@ export default function Projects() {
       description:
         "A SaaS project that helps influencers auto-respond to Instagram DMs using custom keywords. It includes an AI bot to handle conversations based on chat history.",
       tags: ["TypeScript", "Prisma", "Neon", "SaaS"],
-      image: "/project-slide.jpg",
-      github: "https://github.com/ydvdhrj/slide-dm-automation",
-      live: "https://slide-dm.vercel.app",
+      image: "/slide.jpeg",
+      github: "https://github.com/ydvdhrj/Slide",
+      // live: "https://slide-dm.vercel.app",
       icon: (props) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -160,12 +160,12 @@ export default function Projects() {
       ),
     },
     {
-      title: "RemindMeApp (Android)",
+      title: "EduFocus (Android)",
       description:
         "A Kotlin-based mobile app for setting reminders with customizable alarms and notifications. Built for quick daily task reminders and improved time management.",
       tags: ["Kotlin", "Android", "Mobile Development"],
-      image: "/project-remindme.jpg",
-      github: "https://github.com/ydvdhrj/remind-me-app",
+      image: "/EduFocus.png",
+      github: "https://github.com/ydvdhrj/EduFocus",
       live: "",
       icon: (props) => (
         <svg

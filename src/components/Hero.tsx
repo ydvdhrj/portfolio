@@ -223,7 +223,7 @@ export default function Hero() {
 
                   <Button
                     as="a"
-                    href="https://linkedin.com/in/"
+                    href="https:linkedin.com/in/dheerajyadav0303"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn"
@@ -265,7 +265,7 @@ export default function Hero() {
               zIndex="1"
             >
               <Image
-                src="/profile.jpg"
+                src="/my photo.jpg"
                 alt="Dheeraj Yadav"
                 fill
                 style={{ objectFit: "cover" }}

@@ -77,12 +77,12 @@ export default function Footer() {
     {
       name: "LinkedIn",
       icon: FaLinkedin,
-      href: "https://linkedin.com/in/",
+      href: "https://linkedin.com/in/dheerajyadav0303",
     },
     {
       name: "Email",
       icon: FaEnvelope,
-      href: "mailto:dheerajyadav@example.com",
+      href: "mailto:dheeraj.yadav0303@gmail.com",
     },
   ];
 
@@ -189,12 +189,12 @@ export default function Footer() {
                     Ujjain, Madhya Pradesh, India
                   </Text>
                   <Link
-                    href="mailto:dheerajyadav@example.com"
+                    href="mailto:dheeraj.yadav0303@gmail.com"
                     color={linkColor}
                     _hover={{ color: linkHoverColor }}
                     fontSize="sm"
                   >
-                    dheerajyadav@example.com
+                    dheeraj.yadav0303@gmail.com
                   </Link>
                 </VStack>
               </VStack>
@@ -251,12 +251,8 @@ export default function Footer() {
               textAlign={{ base: "center", md: "left" }}
               gap={{ base: 4, md: 0 }}
             >
-              <Text fontSize="sm" color={textColor}>
-                &copy; {currentYear} Dheeraj Yadav. All rights reserved.
-              </Text>
-              <Text fontSize="sm" color={textColor}>
-                Designed & Developed with ❤️
-              </Text>
+            
+              
             </Flex>
           </MotionBox>
         </MotionBox>

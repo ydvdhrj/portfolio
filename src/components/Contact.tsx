@@ -205,12 +205,12 @@ export default function Contact() {
                         Email
                       </Heading>
                       <Link
-                        href="mailto:dheerajyadav@example.com"
+                        href="mailto:dheeraj.yadav0303@gmail.com"
                         color={textColor}
                         _hover={{ color: primaryColor }}
                         transition="all 0.3s ease"
                       >
-                        dheerajyadav@example.com
+                        dheeraj.yadav0303@gmail.com
                       </Link>
                     </Box>
                   </MotionBox>
@@ -267,7 +267,7 @@ export default function Contact() {
                       </Heading>
                       <HStack spacing={4}>
                         <Link
-                          href="https://github.com/dheerajyadav"
+                          href="https://github.com/ydvdhrj"
                           target="_blank"
                           rel="noopener noreferrer"
                           color={textColor}
@@ -277,7 +277,7 @@ export default function Contact() {
                           <Icon as={FaGithub} boxSize={6} />
                         </Link>
                         <Link
-                          href="https://linkedin.com/in/dheerajyadav"
+                          href="https://linkedin.com/in/dheerajyadav0303"
                           target="_blank"
                           rel="noopener noreferrer"
                           color={textColor}
